@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Chandangorain/Find-Your-Device/issues"
   },
-  "homepage": "https://github.com/Chandangorain/Find-Your-Device#readme"
+  "homepage": "https://github.com/Chandangorain/Find-Your-Device#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
+  }
 }
