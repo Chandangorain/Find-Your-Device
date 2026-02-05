@@ -1,18 +1,28 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const path = require('path')
 
-const http=require('http')
+const http = require('http')
+const socketio = require('socket.io')
 
-const socketio=require('socket.io');
-const server=http.createServer(app)
-const io=socketio(server)
+const server = http.createServer(app)
+const io = socketio(server)
 
-app.set('view engine','ejs')
-//app.set(express.static(path.join(__dirname,'public')))
+// view engine
+app.set('view engine', 'ejs')
 
+// static files
+app.use(express.static(path.join(__dirname, 'public')))
+
+// socket connection
+io.on('connection', function (socket) {
+  console.log('connected');
+});
+
+// route
 app.get('/', (req, res) => {
-  res.send('Hello !')
-})
+  res.render('index');
+});
 
-server.listen(port);
+server.listen(3000);
