@@ -18,7 +18,7 @@ if(navigator.geolocation){
 );
 }
 
-const map=L.map("map").setView([0,0],10)  //leafletmap is a library . we r using leaflet so that this functions are valid because of lealfet
+const map=L.map("map").setView([0,0],20)  //leafletmap is a library . we r using leaflet so that this functions are valid because of lealfet .[0,0] is center and 20 is zoom view
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{
     attribution:"Find your device"
 }).addTo(map)    //tile layer is a special url for map.Tilelayer is added to map
@@ -39,3 +39,10 @@ socket.on("receive-location",(data)=>{
     }
 
 });
+
+socket.on("user-disconnected",(id)=>{  // if user disconnected
+    if(markers[id]){                     // if marker present then remover marker from layer and delete the id
+        map.removeLayer(markers[id]);
+        delete markers[id];
+    }
+})
